@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import registerNNPushToken from 'native-notify';
 
 export default function App() {
-  registerNNPushToken(4476, 'm37QpgFObNzeXojUEArcmr');
+  registerNNPushToken(4158, '4sG8bYl9NogKQhcKIJUZ8C');
   return (
     <View style={styles.container}>
       <Text>kasun akalanka</Text>
