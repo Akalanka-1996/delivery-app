@@ -33,26 +33,26 @@ export const AuthProvider = ({children}) => {
        })
     }
 
-    // const login = ( email, password) => {
-    //     setIsLoading(true)
+    const login = ( email, password) => {
+        setIsLoading(true)
  
-    //     axios.post(`http://192.168.1.103:8080/api/users/login`, {
-    //         email,
-    //         password
-    //     })
-    //     .then(res => {
-    //          let userInfo = res.data
-    //          console.log(userInfo)
-    //          setUserInfo(userInfo)
-    //          AsyncStorage.setItem('userInfo', JSON.stringify(userInfo))
-    //          setIsLoading(false)
-    //          console.log(userInfo)
-    //     })
-    //     .catch(e => {
-    //         console.log(`register error ${e}`)
-    //         setIsLoading(false)
-    //     })
-    //  }
+        axios.post(`/users/login`, {
+            email,
+            password
+        })
+        .then(res => {
+             let userInfo = res.data
+             console.log(userInfo)
+             setUserInfo(userInfo)
+             AsyncStorage.setItem('userInfo', JSON.stringify(userInfo))
+             setIsLoading(false)
+             console.log(userInfo)
+        })
+        .catch(e => {
+            console.log(`register error ${e}`)
+            setIsLoading(false)
+        })
+     }
 
     //  const logout = () => {
     //      setIsLoading(true)
@@ -92,7 +92,7 @@ export const AuthProvider = ({children}) => {
             // userInfo,
             // splashLoading,
             register,
-            // login,
+            login,
             // logout
         }}
         >

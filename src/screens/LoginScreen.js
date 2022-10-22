@@ -2,19 +2,17 @@ import { StatusBar } from "expo-status-bar";
 import { View, Text, StyleSheet } from "react-native";
 import { Image } from "react-native";
 import { Input, Button } from "react-native-elements";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { KeyboardAvoidingView } from "react-native";
 import { TouchableOpacity } from "react-native";
+import { AuthContext } from "../context/AuthContext";
 
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  useEffect(() => {
-    console.log(email)
-    console.log(password)
-  }, [])
+  const {isLoading, login} = useContext(AuthContext)
 
 
   return (
@@ -50,7 +48,7 @@ const LoginScreen = ({ navigation }) => {
 
         <Button title="Login" 
             containerStyle={styles.button} 
-            // onPress={signIn} 
+            onPress={() => {login(email, password)}} 
         />
         <Button
           title="Register"
