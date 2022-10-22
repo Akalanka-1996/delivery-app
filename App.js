@@ -1,15 +1,36 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import registerNNPushToken from 'native-notify';
+import * as React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { LogBox } from 'react-native'
+
+import LoginScreen from './screens/LoginScreen';
+import RegisterScreen from './screens/RegisterScreen';
+import HomeScreen from './screens/HomeScreen'
+
+LogBox.ignoreLogs(['Setting a timer for a long period of time'])
+
+const Stack = createNativeStackNavigator();
+
+const globalScreenOptions = {
+  headerStyle: {backgroundColor: "#2C6BED"},
+  headerTitleStyle: {color:"white"},
+  headerTintColor: "white",
+}
 
 export default function App() {
-  registerNNPushToken(4158, '4sG8bYl9NogKQhcKIJUZ8C');
   return (
-    <View style={styles.container}>
-      <Text>kasun akalanka</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home" screenOptions={globalScreenOptions}>
+      <Stack.Screen name='Login' component={LoginScreen} styles={styles.header} />
+      <Stack.Screen name='Register' component={RegisterScreen} />
+      <Stack.Screen name='Home' component={HomeScreen} />
+         
+      </Stack.Navigator>
+    
+    </NavigationContainer>
+    )
+
 }
 
 const styles = StyleSheet.create({
@@ -19,4 +40,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  header:{
+    textAlign:'center'
+  }
 });
