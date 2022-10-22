@@ -4,11 +4,17 @@ import { Image } from "react-native";
 import { Input, Button } from "react-native-elements";
 import React, { useState, useEffect } from "react";
 import { KeyboardAvoidingView } from "react-native";
+import { TouchableOpacity } from "react-native";
 
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  useEffect(() => {
+    console.log(email)
+    console.log(password)
+  }, [])
 
 
   return (
@@ -20,7 +26,7 @@ const LoginScreen = ({ navigation }) => {
         <StatusBar style="light" />
         <Image
           source={{
-            uri: "https://logowik.com/content/uploads/images/signal-messenger-icon9117.jpg",
+            uri: "https://customsitesmedia.usc.edu/wp-content/uploads/sites/59/2015/10/16133208/delivery_WEB-824x549.jpg",
           }}
           style={styles.logo}
         />
@@ -38,7 +44,7 @@ const LoginScreen = ({ navigation }) => {
             type="password"
             value={password}
             onChangeText={(text) => setPassword(text)}
-            onSubmitEditing={signIn}
+            // onSubmitEditing={signIn}
           />
         </View>
 
@@ -50,8 +56,17 @@ const LoginScreen = ({ navigation }) => {
           title="Register"
           containerStyle={styles.button}
           type="outline"
-        //   onPress={() => navigation.navigate("Register")}
+          onPress={() => navigation.navigate("Register")}
         />
+        <View style={{ flexDirection: "row", marginTop: 20 }}>
+          <Text>Click </Text>
+          <TouchableOpacity 
+          onPress={() => navigation.navigate('Supplier')}
+          >
+            <Text style={styles.supplierText}>Here</Text>
+          </TouchableOpacity>
+          <Text> to become a supplier</Text>
+        </View>
         {/* <View style={{height:100}}></View> */}
       </View>
     </KeyboardAvoidingView>
@@ -77,6 +92,9 @@ const styles = StyleSheet.create({
     width: 200,
     marginBottom: 10,
   },
+  supplierText: {
+    color: '#2C6BED'
+  }
 });
 
 export default LoginScreen;

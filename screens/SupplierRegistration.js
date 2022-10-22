@@ -4,7 +4,7 @@ import { KeyboardAvoidingView } from 'react-native'
 import { View, StyleSheet } from 'react-native'
 import { Button, Input, Text } from 'react-native-elements'
 
-const RegisterScreen = ({ navigation }) => {
+const SupplierRegistration = ({ navigation }) => {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -14,7 +14,7 @@ const RegisterScreen = ({ navigation }) => {
         <KeyboardAvoidingView style={styles.container}>
             <StatusBar style='light' />
             <Text h3 style={styles.headerText}>
-                Create a New Account
+                Create a Supplier Account
             </Text>
 
             <View style={styles.inputContainer}>
@@ -59,4 +59,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default RegisterScreen
+export default SupplierRegistration

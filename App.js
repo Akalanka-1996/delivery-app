@@ -7,6 +7,7 @@ import { LogBox } from 'react-native'
 import LoginScreen from './screens/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen';
 import HomeScreen from './screens/HomeScreen'
+import SupplierRegistration from './screens/SupplierRegistration'
 
 LogBox.ignoreLogs(['Setting a timer for a long period of time'])
 
@@ -24,7 +25,8 @@ export default function App() {
       <Stack.Navigator initialRouteName="Home" screenOptions={globalScreenOptions}>
       <Stack.Screen name='Login' component={LoginScreen} styles={styles.header} />
       <Stack.Screen name='Register' component={RegisterScreen} />
-      <Stack.Screen name='Home' component={HomeScreen} />
+      <Stack.Screen name='Supplier' component={SupplierRegistration} />
+      {/* <Stack.Screen name='Home' component={HomeScreen} /> */}
          
       </Stack.Navigator>
     
