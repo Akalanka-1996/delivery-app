@@ -87,6 +87,7 @@ const styles = StyleSheet.create({
     width: 150,
     height: 150,
     marginBottom: 10,
+    borderRadius: 5
   },
   button: {
     width: 200,

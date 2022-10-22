@@ -1,14 +1,20 @@
-import React, {useState, useLayoutEffect} from 'react'
+import React, {useState, useLayoutEffect, useContext} from 'react'
 import { StatusBar } from 'expo-status-bar'
 import { KeyboardAvoidingView } from 'react-native'
 import { View, StyleSheet } from 'react-native'
 import { Button, Input, Text } from 'react-native-elements'
+import { AuthContext } from '../context/AuthContext'
+import axios from 'axios'
 
 const RegisterScreen = ({ navigation }) => {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [imageUrl, setImageUrl] = useState('')
+    const [phone, setPhone] = useState()
+    const [area, setArea] = useState('')
+    const [lane, setLane] = useState('')
+
+    const {register, isLoading} = useContext(AuthContext)
 
     return (
         <KeyboardAvoidingView style={styles.container}>
@@ -21,16 +27,20 @@ const RegisterScreen = ({ navigation }) => {
                 <Input type="text" placeholder="Full Name" autoFocus value={name} onChangeText={(text) => setName(text)} />
                 <Input type="email" placeholder="Email" value={email} onChangeText={(text) => setEmail(text)} />
                 <Input type="password" placeholder="Password" value={password} onChangeText={(text) => setPassword(text)} secureTextEntry />
-                <Input type="text" placeholder="Profile Picture URL (optional)" value={imageUrl} onChangeText={(text) => setImageUrl(text)} 
+                <Input type="phone" placeholder="Phone" value={phone} onChangeText={(text) => setPhone(text)} />
+                <Input type="text" placeholder="Area" value={area} onChangeText={(text) => setArea(text)} />
+                <Input type="text" placeholder="Lane" value={lane} onChangeText={(text) => setLane(text)} 
                 // onSubmitEditing={register} 
+
                 />
+
             </View>
 
             <Button 
                 containerStyle={styles.button} 
                 raised 
                 title="Register" 
-                // onPress={register} 
+                onPress={() => {register(name, email, password, phone, area, lane)}} 
                 />
             {/* <View style={{height:100}}></View> */}
 
