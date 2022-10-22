@@ -4,7 +4,6 @@ import { KeyboardAvoidingView } from 'react-native'
 import { View, StyleSheet } from 'react-native'
 import { Button, Input, Text } from 'react-native-elements'
 import { AuthContext } from '../context/AuthContext'
-import axios from 'axios'
 
 const RegisterScreen = ({ navigation }) => {
     const [name, setName] = useState('')
@@ -42,7 +41,6 @@ const RegisterScreen = ({ navigation }) => {
                 title="Register" 
                 onPress={() => {register(name, email, password, phone, area, lane)}} 
                 />
-            {/* <View style={{height:100}}></View> */}
 
         </KeyboardAvoidingView>
     )

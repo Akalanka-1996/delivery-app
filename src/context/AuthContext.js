@@ -1,6 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
-// import axios from '../utils/axios'
-import axios from 'axios'
+import axios from '../utils/axios'
 import React, {createContext, useState, useEffect} from 'react'
 
 export const AuthContext = createContext()
@@ -13,8 +12,7 @@ export const AuthProvider = ({children}) => {
     const register = (name, email, password, phone, lane, area) => {
        setIsLoading(true)
 
-
-       axios.post(`http://192.168.1.103:8080/api/users/`, {
+       axios.post(`/users/`, {
         name,
         email,
         password,
