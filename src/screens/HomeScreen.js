@@ -17,6 +17,8 @@ function HomeScreen() {
 
       <Text>Home Screen</Text>
       <Text>{userInfo.name}</Text>
+      <Text>{userInfo.area}</Text>
+
     </View>
   );
 }
