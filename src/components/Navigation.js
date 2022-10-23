@@ -1,13 +1,14 @@
-import * as React from 'react';
+import React, { useContext } from "react";
 import { View, Text, StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { LogBox } from 'react-native'
-
+import { AuthContext } from "../context/AuthContext";
 import LoginScreen from '../screens/LoginScreen';
 import RegisterScreen from '../screens/RegisterScreen';
 import HomeScreen from '../screens/HomeScreen'
 import SupplierRegistration from '../screens/SupplierRegistration'
+import CreateCompany from '../screens/CreateCompany'
 
 LogBox.ignoreLogs(['Setting a timer for a long period of time'])
 
@@ -20,13 +21,31 @@ const globalScreenOptions = {
 }
 
 const Navigation = () => {
+  const {userInfo } = useContext(AuthContext)
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home" screenOptions={globalScreenOptions}>
-      <Stack.Screen name='Login' component={LoginScreen} styles={styles.header} />
-      <Stack.Screen name='Register' component={RegisterScreen} />
-      <Stack.Screen name='Supplier' component={SupplierRegistration} />
-      {/* <Stack.Screen name='Home' component={HomeScreen} /> */}
+      <Stack.Navigator 
+        initialRouteName="Home" screenOptions={globalScreenOptions}
+      >
+      {userInfo.token ? (
+        [userInfo.isSupplier === false ?
+           <>
+           <Stack.Screen name='Home' component={HomeScreen} />
+           </> : 
+           <>
+        <Stack.Screen name='Company' component={CreateCompany} />
+           
+           </>]
+
+      ) : (
+        <>
+          <Stack.Screen name='Login' component={LoginScreen} styles={styles.header} />
+          <Stack.Screen name='Register' component={RegisterScreen} />
+          <Stack.Screen name='Supplier' component={SupplierRegistration} />
+        </>
+        
+      )}
+     
          
       </Stack.Navigator>
     

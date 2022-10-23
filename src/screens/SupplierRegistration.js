@@ -31,7 +31,7 @@ const SupplierRegistration = ({ navigation }) => {
                 <Input 
                     type="text" 
                     placeholder="Full Name" 
-                    autoFocus value={name} 
+                    value={name} 
                     onChangeText={(text) => setName(text)} 
                 />
                 <Input 

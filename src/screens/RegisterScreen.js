@@ -23,7 +23,7 @@ const RegisterScreen = ({ navigation }) => {
             </Text>
 
             <View style={styles.inputContainer}>
-                <Input type="text" placeholder="Full Name" autoFocus value={name} onChangeText={(text) => setName(text)} />
+                <Input type="text" placeholder="Full Name" value={name} onChangeText={(text) => setName(text)} />
                 <Input type="email" placeholder="Email" value={email} onChangeText={(text) => setEmail(text)} />
                 <Input type="password" placeholder="Password" value={password} onChangeText={(text) => setPassword(text)} secureTextEntry />
                 <Input type="phone" placeholder="Phone" value={phone} onChangeText={(text) => setPhone(text)} />
