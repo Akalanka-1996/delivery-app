@@ -1,14 +1,24 @@
-import React, {useState, useLayoutEffect} from 'react'
+import React, {useState, useLayoutEffect, useContext} from 'react'
 import { StatusBar } from 'expo-status-bar'
 import { KeyboardAvoidingView } from 'react-native'
 import { View, StyleSheet } from 'react-native'
 import { Button, Input, Text } from 'react-native-elements'
+import { AuthContext } from '../context/AuthContext'
 
 const SupplierRegistration = ({ navigation }) => {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [imageUrl, setImageUrl] = useState('')
+    const [phone, setPhone] = useState()
+    // const [isSupplier, setIsSupplier] = useState(false)
+
+    const {registerSupplier, isLoading} = useContext(AuthContext)
+
+    const supplierRegister = () => {
+        // setIsSupplier(!isSupplier)
+        // console.log(isSupplier)
+        registerSupplier(name, email, password, phone)
+    }
 
     return (
         <KeyboardAvoidingView style={styles.container}>
@@ -18,19 +28,38 @@ const SupplierRegistration = ({ navigation }) => {
             </Text>
 
             <View style={styles.inputContainer}>
-                <Input type="text" placeholder="Full Name" autoFocus value={name} onChangeText={(text) => setName(text)} />
-                <Input type="email" placeholder="Email" value={email} onChangeText={(text) => setEmail(text)} />
-                <Input type="password" placeholder="Password" value={password} onChangeText={(text) => setPassword(text)} secureTextEntry />
-                <Input type="text" placeholder="Profile Picture URL (optional)" value={imageUrl} onChangeText={(text) => setImageUrl(text)} 
-                // onSubmitEditing={register} 
+                <Input 
+                    type="text" 
+                    placeholder="Full Name" 
+                    autoFocus value={name} 
+                    onChangeText={(text) => setName(text)} 
                 />
+                <Input 
+                    type="email" 
+                    placeholder="Email" 
+                    value={email} 
+                    onChangeText={(text) => setEmail(text)} 
+                />
+                <Input 
+                    type="password" 
+                    placeholder="Password" 
+                    value={password} 
+                    onChangeText={(text) => setPassword(text)} secureTextEntry 
+                />
+                <Input 
+                    type="phone" 
+                    placeholder="Phone" 
+                    value={phone} 
+                    onChangeText={(text) => setPhone(text)}
+                />
+ 
             </View>
 
             <Button 
                 containerStyle={styles.button} 
                 raised 
                 title="Register" 
-                // onPress={register} 
+                onPress={supplierRegister} 
                 />
             {/* <View style={{height:100}}></View> */}
 

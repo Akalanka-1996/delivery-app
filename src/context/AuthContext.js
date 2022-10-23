@@ -11,8 +11,10 @@ export const AuthProvider = ({children}) => {
     const [isLoading, setIsLoading] = useState(false)
     const [splashLoading, setSplashLoading] = useState(false)
 
-    const register = (name, email, password, phone, lane, area) => {
+    const register = (name, email, password, phone, lane, area, isSupplier) => {
        setIsLoading(true)
+       console.log('name', name)
+       console.log('isSupplier', isSupplier)
 
        axios.post(`${BASE_URL}/users/`, {
         name,
@@ -20,7 +22,8 @@ export const AuthProvider = ({children}) => {
         password,
         phone,
         area,
-        lane
+        lane,
+        isSupplier
     })
        .then(res => {
             let userInfo = res.data
@@ -34,6 +37,29 @@ export const AuthProvider = ({children}) => {
            setIsLoading(false)
        })
     }
+
+    const registerSupplier = (name, email, password, phone) => {
+        setIsLoading(true)
+ 
+        axios.post(`${BASE_URL}/users/`, {
+         name,
+         email,
+         password,
+         phone,
+         isSupplier: true
+     })
+        .then(res => {
+             let userInfo = res.data
+             setUserInfo(userInfo)
+             AsyncStorage.setItem('userInfo', JSON.stringify(userInfo))
+             setIsLoading(false)
+             console.log(userInfo)
+        })
+        .catch(e => {
+            console.log(`register error ${e}`)
+            setIsLoading(false)
+        })
+     }
 
     const login = ( email, password) => {
         setIsLoading(true)
@@ -94,6 +120,7 @@ export const AuthProvider = ({children}) => {
             // userInfo,
             // splashLoading,
             register,
+            registerSupplier,
             login,
             // logout
         }}
