@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import React, {useState, useLayoutEffect, useContext} from 'react'
 import {AuthContext} from '../context/AuthContext'
 import { AntDesign } from '@expo/vector-icons'; 
-
+import Header from '../components/Header'
 
 
 const CreateCompany = () => {
@@ -10,15 +10,16 @@ const CreateCompany = () => {
 
   return (
     <View>
-      <Text>CreateCompany</Text>
-        <TouchableOpacity onPress={logout}>
-      <AntDesign style={styles.logout} name="logout" size={24} color="black" />
-
-      </TouchableOpacity>
+     <Header text="Create Company" />
+        
     </View>
   )
 }
 
 export default CreateCompany
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  logout: {
+    alignSelf: 'flex-end'
+  }
+})

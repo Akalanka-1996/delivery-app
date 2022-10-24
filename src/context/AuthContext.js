@@ -91,27 +91,27 @@ export const AuthProvider = ({children}) => {
          setIsLoading(false)
      }
 
-     const isLoggedIn = async () => {
-         try {
-            setSplashLoading(true)
+    //  const isLoggedIn = async () => {
+    //      try {
+    //         setSplashLoading(true)
 
-             let userInfo = await AsyncStorage.getItem('userInfo')
-             userInfo = JSON.parse(userInfo)
+    //          let userInfo = await AsyncStorage.getItem('userInfo')
+    //          userInfo = JSON.parse(userInfo)
 
-             if(userInfo) {
-                 setUserInfo(userInfo)
-             }
+    //          if(userInfo) {
+    //              setUserInfo(userInfo)
+    //          }
 
-             setSplashLoading(false)
-         } catch (error) {
-             splashLoading(false)
-             console.log(error)
-         }
-     }
+    //          setSplashLoading(false)
+    //      } catch (error) {
+    //          splashLoading(false)
+    //          console.log(error)
+    //      }
+    //  }
 
-     useEffect(() => {
-       isLoggedIn() 
-     }, [])
+    //  useEffect(() => {
+    //    isLoggedIn() 
+    //  }, [])
 
 
 
