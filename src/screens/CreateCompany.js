@@ -11,7 +11,7 @@ const CreateCompany = () => {
   return (
     <View>
       <Text>CreateCompany</Text>
-      <TouchableOpacity onPress={logout}>
+        <TouchableOpacity onPress={logout}>
       <AntDesign style={styles.logout} name="logout" size={24} color="black" />
 
       </TouchableOpacity>
