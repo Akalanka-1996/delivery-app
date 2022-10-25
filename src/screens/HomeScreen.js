@@ -16,13 +16,36 @@ function HomeScreen() {
   const token = userInfo.token
   const area = userInfo.area
   
-  const addCategory = () => {
+  const handleIce = () => {
+    console.log("abc")
     setCategory('ice')
+    console.log('category', category)
   }
 
+  const handleBakery = () => {
+    console.log("abc")
+    setCategory('bake')
+    console.log('category', category)
+  }
+
+  const handleVeg = () => {
+    console.log("abc")
+    setCategory('veg')
+    console.log('category', category)
+  }
+
+  const handleMilk = () => {
+    console.log("abc")
+    setCategory('milk')
+    console.log('category', category)
+  }
+
+
+
   useEffect(() => {
+    if(category !== '')
     getCompany()
-  }, [])
+  }, [category])
 
   const getCompany = async () => {
     try {
@@ -30,7 +53,7 @@ function HomeScreen() {
         headers: { Authorization: `Bearer ${token}` }
     };
 
-    const {data} = await axios.get(`${BASE_URL}/company/company-area/${area}/${category}`, config)
+    const {data} = await axios.get(`${BASE_URL}/company/company-from-user/${area}/${category}`, config)
     console.log('data', data);
 
     } catch (error) {
@@ -48,22 +71,25 @@ function HomeScreen() {
       <Header text="Home Screen" />
       <Text>Hi {userInfo.name}</Text>
       <Text>What are you looking for?</Text>
-      <TouchableOpacity onPress={addCategory}>
+      <View>
+      <TouchableOpacity onPress={handleIce}>
       <MaterialIcons name="icecream" size={24} color="black" />
 
       </TouchableOpacity>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={handleBakery}>
       <FontAwesome5 name="hamburger" size={24} color="black" />
 
       </TouchableOpacity>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={handleVeg}>
       <FontAwesome5 name="pepper-hot" size={24} color="black" />
 
       </TouchableOpacity>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={handleMilk}>
       <MaterialIcons name="local-drink" size={24} color="black" />
 
       </TouchableOpacity>
+      </View>
+      
 
 
     </View>
