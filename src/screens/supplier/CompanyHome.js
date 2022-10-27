@@ -12,7 +12,7 @@ const CompanyHome = ({navigation}) => {
 
     const translateX = useRef(new Animated.Value(Dimensions.get("window").height)).current 
     useEffect(()=>{
-      Animated.timing(translateX,{toValue:0,duration:2000}).start();
+      Animated.timing(translateX,{toValue:0,duration:2000,  useNativeDriver: true}).start();
     })
 
     const ItemView = ({ item }) => {
