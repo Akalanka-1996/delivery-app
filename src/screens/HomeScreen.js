@@ -15,29 +15,22 @@ function HomeScreen() {
   const [category, setCategory] = useState('')
   const token = userInfo.token
   const area = userInfo.area
-  
+
   const handleIce = () => {
-    console.log("abc")
+
     setCategory('ice')
-    console.log('category', category)
   }
 
   const handleBakery = () => {
-    console.log("abc")
     setCategory('bake')
-    console.log('category', category)
   }
 
   const handleVeg = () => {
-    console.log("abc")
     setCategory('veg')
-    console.log('category', category)
   }
 
   const handleMilk = () => {
-    console.log("abc")
     setCategory('milk')
-    console.log('category', category)
   }
 
 
@@ -63,10 +56,6 @@ function HomeScreen() {
 
   return (
     <View>
-      {/* <TouchableOpacity onPress={logout}>
-      <AntDesign style={styles.logout} name="logout" size={24} color="black" />
-
-      </TouchableOpacity> */}
 
       <Header text="Home Screen" />
       <Text>Hi {userInfo.name}</Text>

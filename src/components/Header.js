@@ -10,9 +10,9 @@ const Header = ({ text }) => {
   return (
     <View style={styles.container}>
      
-      <TouchableOpacity style={styles.backArrow}>
+      {/* <TouchableOpacity style={styles.backArrow}>
         <Ionicons name="arrow-back-outline" size={30} />
-      </TouchableOpacity>
+      </TouchableOpacity> */}
       <View style={styles.title}>
         <Text style={styles.titleText}>{text}</Text>
       </View>

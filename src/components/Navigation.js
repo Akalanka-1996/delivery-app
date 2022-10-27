@@ -9,6 +9,7 @@ import RegisterScreen from '../screens/RegisterScreen';
 import HomeScreen from '../screens/HomeScreen'
 import SupplierRegistration from '../screens/SupplierRegistration'
 import CreateCompany from '../screens/CreateCompany'
+import CompanyHome from '../screens/CompanyHome'
 
 LogBox.ignoreLogs(['Setting a timer for a long period of time'])
 
@@ -33,6 +34,7 @@ const Navigation = () => {
            <Stack.Screen name='Home' component={HomeScreen} />
            </> : 
            <>
+        <Stack.Screen name='CompanyHome' component={CompanyHome} />
         <Stack.Screen name='Company' component={CreateCompany} />
            
            </>]
