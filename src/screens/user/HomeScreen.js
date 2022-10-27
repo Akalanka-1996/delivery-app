@@ -18,12 +18,12 @@ import {
 } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { AuthContext } from "../context/AuthContext";
 import { AntDesign } from "@expo/vector-icons";
 import axios from "axios";
-import { BASE_URL } from "../config";
-import Header from "../components/Header";
 import { MaterialIcons, FontAwesome5 } from "@expo/vector-icons";
+import { AuthContext } from "../../context/AuthContext";
+import Header from '../../components/Header'
+import { BASE_URL } from '../../config';
 
 function HomeScreen({navigation}) {
   const { userInfo, isLoading, logout } = useContext(AuthContext);

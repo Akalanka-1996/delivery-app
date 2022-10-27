@@ -1,14 +1,14 @@
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import React, {useState, useLayoutEffect, useContext, useEffect} from 'react'
-import {AuthContext} from '../context/AuthContext'
 import { AntDesign } from '@expo/vector-icons'; 
-import Header from '../components/Header'
 import DropDownPicker from "react-native-dropdown-picker";
 import { Button, Input } from 'react-native-elements'
 import axios from 'axios';
-import { BASE_URL } from '../config';
+import Header from '../../components/Header'
+import {AuthContext} from '../../context/AuthContext'
+import { BASE_URL } from '../../config';
 
-const CreateCompany = () => {
+const CreateCompany = ({navigation}) => {
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [area, setArea] = useState('')
@@ -82,6 +82,14 @@ const CreateCompany = () => {
                 title="Add Company" 
                 onPress={createCompany} 
                 />
+             <Button 
+                containerStyle={styles.button} 
+                raised 
+          type="outline"
+
+                title="My Companies" 
+                onPress={() => navigation.navigate('CompanyHome')} 
+                />
     
         
     </View>
@@ -108,6 +116,7 @@ dropdown: {
 },
 button:{
   width:200,
-  alignSelf: 'center'
+  alignSelf: 'center',
+  marginBottom: 15
 },
 })

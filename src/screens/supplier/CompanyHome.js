@@ -1,10 +1,10 @@
 import {  FlatList, View, Text, SafeAreaView, StyleSheet, Dimensions, Animated, Easing } from 'react-native'
 import React, {useContext, useEffect, useState, useRef} from 'react'
-import Header from '../components/Header'
-import {AuthContext} from '../context/AuthContext'
+import Header from '../../components/Header'
+import {AuthContext} from '../../context/AuthContext'
+import { BASE_URL } from '../../config';
 import { Button, Input } from 'react-native-elements'
 import axios from 'axios';
-import { BASE_URL } from '../config';
 
 const CompanyHome = ({navigation}) => {
     const [company, setCompany] = useState([])
@@ -79,11 +79,11 @@ const CompanyHome = ({navigation}) => {
       />
     </View>
     <View style={styles.btnContainer}>
-    <Button
+    {/* <Button
           title="Add Company"
           containerStyle={styles.button}
           onPress={() => navigation.navigate("Company")}
-        />
+        /> */}
      <View style={styles.container}>
     </View>
    
