@@ -12,6 +12,8 @@ import ViewCompany from "../screens/user/ViewCompany";
 import CreateCompany from "../screens/supplier/CreateCompany";
 import CompanyHome from "../screens/supplier/CompanyHome";
 import AddRoute from '../screens/supplier/AddRoute'
+import ModifyRoute from '../screens/supplier/ModifyRoute'
+import AddLane from '../screens/supplier/AddLane'
 
 LogBox.ignoreLogs(["Setting a timer for a long period of time"]);
 
@@ -44,6 +46,8 @@ const Navigation = () => {
 
                 <Stack.Screen name="CompanyHome" component={CompanyHome} />
                 <Stack.Screen name="AddRoute" component={AddRoute} />
+                <Stack.Screen name="ModifyRoute" component={ModifyRoute} />
+                <Stack.Screen name="AddLane" component={AddLane} />
 
               </>
             ),

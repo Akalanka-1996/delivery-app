@@ -56,7 +56,7 @@ function HomeScreen({navigation}) {
     new Animated.Value(Dimensions.get("window").height)
   ).current;
   useEffect(() => {
-    Animated.timing(translateX, { toValue: 0, duration: 2000, useNativeDriver: true }).start();
+    Animated.timing(translateX, { toValue: 0, duration: 1000, useNativeDriver: true }).start();
   });
 
   const ItemView = ({ item }) => {
@@ -155,6 +155,11 @@ const styles = StyleSheet.create({
     // alignContent: 'flex'
     flexDirection: "row",
     alignContent: "space-between",
+  },
+  item: {
+    padding: 10,
+    fontSize: 18,
+    height: 44,
   },
 });
 

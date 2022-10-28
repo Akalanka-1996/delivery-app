@@ -7,11 +7,12 @@ import { BASE_URL } from "../../config";
 import { Button, Input } from "react-native-elements";
 
 
-const AddRoute = ({route}) => {
+const AddRoute = ({route, navigation}) => {
     
     const [area, setArea] = useState("");
     const [startPoint, setStartPoint] = useState("")
     const [startTime, setStartTime] = useState()
+    const [id, setId] = useState()
 
     const { userInfo, isLoading, logout } = useContext(AuthContext);
 
@@ -25,7 +26,7 @@ const AddRoute = ({route}) => {
       
             const { data } = await axios.post(
               `${BASE_URL}/routes/create`,
-              { area, startPoint, startTime, company: route.params.paramKey },
+              { area, startPoint, startTime, company: id },
               config
             );
             console.log("data", data);
@@ -33,6 +34,17 @@ const AddRoute = ({route}) => {
           } catch (error) {
             console.log(error);
           }
+    }
+
+    useEffect(() => {
+        setId(route.params.paramKey)
+        console.log('id', id);
+    }, [id])
+
+    const modifyRoute = () => {
+        navigation.navigate('ModifyRoute' , {
+            paramKey: id,
+          })
     }
 
   return (
@@ -62,6 +74,13 @@ const AddRoute = ({route}) => {
         raised
         title="Add Route"
         onPress={createRoute}
+      />
+       <Button
+        containerStyle={styles.button}
+        raised
+        type="outline"
+        title="Modify Route"
+        onPress={modifyRoute}
       />
     </View>
   )
