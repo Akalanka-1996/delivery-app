@@ -9,10 +9,6 @@ const Header = ({ text }) => {
   const {userInfo, isLoading, logout } = useContext(AuthContext)
   return (
     <View style={styles.container}>
-     
-      {/* <TouchableOpacity style={styles.backArrow}>
-        <Ionicons name="arrow-back-outline" size={30} />
-      </TouchableOpacity> */}
       <View style={styles.title}>
         <Text style={styles.titleText}>{text}</Text>
       </View>
@@ -39,7 +35,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
   },
-  titleText: { marginRight: 40 },
+  titleText: {alignItems: 'center', fontSize: 22 },
   logout: {
     marginRight: 20
   }

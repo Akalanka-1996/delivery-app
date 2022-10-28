@@ -12,6 +12,7 @@ const StartJourney = ({route}) => {
     const { userInfo, isLoading, logout } = useContext(AuthContext);
     const [vehilceType, setVehilceType] = useState('')
     const [vehicleNumber, setVehicleNumber] = useState('')
+    const [count, setCount] = useState()
 
     const token = userInfo.token;
 
@@ -33,10 +34,32 @@ const StartJourney = ({route}) => {
           }
     }
 
+    const getFollowerCount = async() => {
+      try {
+        const config = {
+          headers: { Authorization: `Bearer ${token}` },
+        };
+  
+        const { data } = await axios.get(
+          `${BASE_URL}/routes/follower-count/${route.params.paramKey}`,
+          config
+        );
+        console.log("count", data);
+        setCount(data)
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    useEffect(() => {
+      console.log('paramKey', route.params.paramKey)
+      getFollowerCount()
+    }, [])
+
   return (
     <View>
       <Header text="Start Journey" />
-      <Text>Followers Count</Text>
+      <Text>Followers Count: {count}</Text>
       {/* <Text>{route.params.paramKey}</Text> */}
       <Input
           type="text"

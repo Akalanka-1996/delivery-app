@@ -107,7 +107,10 @@ function HomeScreen({navigation}) {
   return (
     <View>
       <Header text="Home Screen" />
+      <View style={styles.name}>
       <Text>Hi {userInfo.name}</Text>
+
+      </View>
       <View>
         {category === "" ? (
           <>
@@ -161,6 +164,11 @@ const styles = StyleSheet.create({
     fontSize: 18,
     height: 44,
   },
+  name: {
+    marginLeft: 120,
+    fontStyle: 'bold',
+    fontSize: 24
+  }
 });
 
 export default HomeScreen;

@@ -25,7 +25,7 @@ const ViewCompany = ({route}) => {
       };
 
       const { data } = await axios.get(
-        `${BASE_URL}/routes/${route.params.paramKey}`,
+        `${BASE_URL}/routes/get-route-with-lanes/${route.params.paramKey}`,
         config
       );
       console.log("new sdata", data);
