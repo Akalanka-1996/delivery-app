@@ -11,10 +11,12 @@ export const AuthProvider = ({children}) => {
     const [isLoading, setIsLoading] = useState(false)
     const [splashLoading, setSplashLoading] = useState(false)
 
-    const register = (name, email, password, phone, lane, area, isSupplier) => {
+    const register = (name, email, password, phone, area, lane, isSupplier) => {
        setIsLoading(true)
        console.log('name', name)
        console.log('isSupplier', isSupplier)
+       console.log('area', area)
+       console.log('lane', lane)
 
        axios.post(`${BASE_URL}/users/`, {
         name,
