@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Alert } from "react-native";
 import React, { useState, useLayoutEffect, useContext, useEffect } from "react";
 import { AntDesign } from "@expo/vector-icons";
 import DropDownPicker from "react-native-dropdown-picker";
@@ -36,6 +36,7 @@ const CreateCompany = ({ navigation }) => {
         config
       );
       console.log("data", data);
+      alert('Company Added');
     } catch (error) {
       console.log(error);
     }

@@ -6,7 +6,7 @@ import { BASE_URL } from '../../config';
 import { Button, Input } from 'react-native-elements'
 import axios from 'axios';
 
-const CompanyHome = ({navigation}) => {
+const CompanyHome = ({ navigation }) => {
     const [company, setCompany] = useState([])
     const {userInfo, isLoading, logout } = useContext(AuthContext)
 
@@ -21,7 +21,7 @@ const CompanyHome = ({navigation}) => {
           // Single Comes here which will be repeatative for the FlatListItems
           <Animated.View style={{transform:[{translateY:translateX}]}} >
             <Text style={styles.item} onPress={() => getItem(item)}>
-              {item.description}
+              {item.title}
             </Text>
           </Animated.View>
         );
@@ -38,7 +38,10 @@ const CompanyHome = ({navigation}) => {
     
       const getItem = (item) => {
         //Function for click on an item
-        alert('Id : ' + item.area + ' Value : ' + item.category);
+        // alert('Id : ' + item._id + ' Value : ' + item.category);
+        navigation.navigate('AddRoute' , {
+          paramKey: item._id,
+        })
       };
     
 
