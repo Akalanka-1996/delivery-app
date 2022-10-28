@@ -6,7 +6,7 @@ import { BASE_URL } from '../../config';
 import { Button, Input } from 'react-native-elements'
 import axios from 'axios';
 
-const AddLane = ({route}) => {
+const AddLane = ({route, navigation}) => {
     const [lane, setLane] = useState('')
     const [estimatedTime, setEstimatedTime] = useState()
     const [id, setId] = useState('')
@@ -32,6 +32,12 @@ const AddLane = ({route}) => {
           } catch (error) {
             console.log(error);
           }
+    }
+
+    const startJourney = () => {
+      navigation.navigate('StartJourney', {
+        paramKey: id,
+      })
     }
 
     useEffect(() => {
@@ -60,6 +66,12 @@ const AddLane = ({route}) => {
         onPress={addLane}
       />
       </View>
+      <Button
+        containerStyle={styles.button}
+        raised
+        title="Start Journey"
+        onPress={startJourney}
+      />
       
     </View>
   )

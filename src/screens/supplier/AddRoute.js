@@ -47,6 +47,7 @@ const AddRoute = ({route, navigation}) => {
           })
     }
 
+
   return (
     <View>
       {/* <Text>AddRoute</Text> */}
@@ -82,6 +83,8 @@ const AddRoute = ({route, navigation}) => {
         title="Modify Route"
         onPress={modifyRoute}
       />
+
+
     </View>
   )
 }
