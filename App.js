@@ -2,10 +2,11 @@ import React from 'react'
 import { View, Text, StyleSheet } from 'react-native';
 import Navigation from './src/components/Navigation';
 import { AuthProvider } from './src/context/AuthContext';
-
+import registerNNPushToken from 'native-notify';
 
 
 export default function App() {
+  registerNNPushToken(4597, 'pvq8whlzHqDGFuqGdELoWs');
   return (
     <AuthProvider>
       <Navigation />
