@@ -93,7 +93,6 @@ const ViewCompany = ({route, navigation}) => {
   return (
     <View>
       <Header text="View Available Routes" />
-      <Text>{route.params.paramKey}</Text>
              <FlatList
         data={routes}
         renderItem={ItemView}
