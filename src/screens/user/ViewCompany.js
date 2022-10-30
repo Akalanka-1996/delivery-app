@@ -1,4 +1,3 @@
-import { StyleSheet, Text, View } from 'react-native'
 import React, {
   useState,
   useEffect,
@@ -6,14 +5,31 @@ import React, {
   useContext,
   useRef,
 } from "react";
+import {
+  FlatList,
+  View,
+  Text,
+  SafeAreaView,
+  StyleSheet,
+  Dimensions,
+  Animated,
+  Easing,
+  TouchableOpacity,
+} from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { AntDesign } from "@expo/vector-icons";
+import axios from "axios";
+import { MaterialIcons, FontAwesome5 } from "@expo/vector-icons";
 import { AuthContext } from "../../context/AuthContext";
 import Header from '../../components/Header'
 import { BASE_URL } from '../../config';
-import axios from 'axios';
+
 
 
 const ViewCompany = ({route}) => {
   const { userInfo, isLoading, logout } = useContext(AuthContext);
+  const [routes, setRoutes] = useState([])
 
   const token = userInfo.token;
 
@@ -29,6 +45,7 @@ const ViewCompany = ({route}) => {
         config
       );
       console.log("new sdata", data);
+      setRoutes(data)
       // setCompany(data);
     } catch (error) {
       console.log(error);
@@ -39,14 +56,66 @@ const ViewCompany = ({route}) => {
     getCompany()
   }, [])
 
+  const translateX = useRef(
+    new Animated.Value(Dimensions.get("window").height)
+  ).current;
+  useEffect(() => {
+    Animated.timing(translateX, { toValue: 0, duration: 1000, useNativeDriver: true }).start();
+  });
+
+  const extractKey = ({lanes}) => lanes
+
+
+  const ItemView =  renderItem = ({item}) => {
+    let items = [];
+    if( item.lanes) {
+      items = item.lanes.map(row => {
+        return <Text onPress={() => getItem(item)}>{row.lane}</Text>
+      })
+    } 
+
+    return (
+      <View>
+        <Text style={styles.row} onPress={() => getItem(item)}>
+          {item.title}
+        </Text>
+        {items}
+      </View>
+    )
+  }
+  const getItem = (item) => {
+    alert("abc"+ item._id)
+    // navigation.navigate('ViewCompany', {
+    //   paramKey: item._id,
+    // })
+  };
+
+
   return (
     <View>
       <Header text="View Available Routes" />
       <Text>{route.params.paramKey}</Text>
+             <FlatList
+        data={routes}
+        renderItem={ItemView}
+        keyExtractor={extractKey}
+      />
     </View>
   )
 }
 
 export default ViewCompany
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  item: {
+    padding: 10,
+    fontSize: 18,
+    height: 44,
+  },
+  row: {
+    padding: 15,
+    marginBottom: 5,
+    backgroundColor: 'skyblue',
+    flexDirection: 'column'
+  },
+})
