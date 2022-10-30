@@ -15,6 +15,7 @@ import AddRoute from "../screens/supplier/AddRoute";
 import ModifyRoute from "../screens/supplier/ModifyRoute";
 import AddLane from "../screens/supplier/AddLane";
 import StartJourney from "../screens/supplier/StartJourney";
+import FollowRoute from "../screens/user/FollowRoute";
 
 LogBox.ignoreLogs(["Setting a timer for a long period of time"]);
 
@@ -40,6 +41,7 @@ const Navigation = () => {
               <>
                 <Stack.Screen name="Home" component={HomeScreen} />
                 <Stack.Screen name="ViewCompany" component={ViewCompany} />
+                <Stack.Screen name="FollowRoute" component={FollowRoute} />
               </>
             ) : (
               <>

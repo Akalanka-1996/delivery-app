@@ -27,7 +27,7 @@ import { BASE_URL } from '../../config';
 
 
 
-const ViewCompany = ({route}) => {
+const ViewCompany = ({route, navigation}) => {
   const { userInfo, isLoading, logout } = useContext(AuthContext);
   const [routes, setRoutes] = useState([])
 
@@ -84,10 +84,9 @@ const ViewCompany = ({route}) => {
     )
   }
   const getItem = (item) => {
-    alert("abc"+ item._id)
-    // navigation.navigate('ViewCompany', {
-    //   paramKey: item._id,
-    // })
+    navigation.navigate('FollowRoute', {
+      paramKey: item._id,
+    })
   };
 
 
