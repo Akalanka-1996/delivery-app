@@ -25,7 +25,7 @@ const ModifyRoute = ({route, navigation}) => {
           // Single Comes here which will be repeatative for the FlatListItems
           <Animated.View style={{transform:[{translateY:translateX}]}} >
             <Text style={styles.item} onPress={() => getItem(item)}>
-              {item.area}
+              {item.title}
             </Text>
           </Animated.View>
         );

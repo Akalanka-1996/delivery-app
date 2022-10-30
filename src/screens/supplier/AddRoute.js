@@ -9,7 +9,7 @@ import { Button, Input } from "react-native-elements";
 
 const AddRoute = ({route, navigation}) => {
     
-    const [area, setArea] = useState("");
+    const [title, setTitle] = useState("");
     const [startPoint, setStartPoint] = useState("")
     const [startTime, setStartTime] = useState()
     const [id, setId] = useState()
@@ -26,7 +26,7 @@ const AddRoute = ({route, navigation}) => {
       
             const { data } = await axios.post(
               `${BASE_URL}/routes/create`,
-              { area, startPoint, startTime, company: id },
+              { title, startPoint, startTime, company: id },
               config
             );
             console.log("data", data);
@@ -54,9 +54,9 @@ const AddRoute = ({route, navigation}) => {
       <Header text="Add a route to your company" />
       <Input
           type="text"
-          placeholder="Area"
-          value={area}
-          onChangeText={(text) => setArea(text)}
+          placeholder="Title"
+          value={title}
+          onChangeText={(text) => setTitle(text)}
         />
         <Input
           type="text"

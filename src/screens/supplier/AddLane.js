@@ -42,6 +42,7 @@ const AddLane = ({route, navigation}) => {
 
     useEffect(() => {
         setId(route.params.paramKey)
+        console.log('route id', id)
     }, [id])
   return (
     <View>
@@ -62,7 +63,7 @@ const AddLane = ({route, navigation}) => {
       <Button
         containerStyle={styles.button}
         raised
-        title="Add Route"
+        title="Add Lane"
         onPress={addLane}
       />
       </View>

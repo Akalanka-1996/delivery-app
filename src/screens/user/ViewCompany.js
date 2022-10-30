@@ -41,7 +41,7 @@ const ViewCompany = ({route}) => {
 
   return (
     <View>
-      <Header text="View Company" />
+      <Header text="View Available Routes" />
       <Text>{route.params.paramKey}</Text>
     </View>
   )
