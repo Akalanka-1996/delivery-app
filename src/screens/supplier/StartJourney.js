@@ -13,6 +13,7 @@ const StartJourney = ({route}) => {
     const [vehilceType, setVehilceType] = useState('')
     const [vehicleNumber, setVehicleNumber] = useState('')
     const [count, setCount] = useState()
+    const [followers, setFollowers] = useState([])
 
     const token = userInfo.token;
 
@@ -29,6 +30,13 @@ const StartJourney = ({route}) => {
             );
             console.log("data", data);
             alert("Journey Started")
+            axios.post(`https://app.nativenotify.com/api/indie/group/notification`, {
+            subIDs: ['635e988e1fb66483a2808722', '635f550034cd7e3748cf78d1'],
+            appId: 4597,
+            appToken: 'pvq8whlzHqDGFuqGdELoWs',
+            title: 'Door To Delivery',
+            message: 'Journey Started'
+ });
           } catch (error) {
             console.log(error);
           }
@@ -51,10 +59,28 @@ const StartJourney = ({route}) => {
       }
     }
 
+    const getFollowers = async() => {
+      try {
+        const config = {
+          headers: { Authorization: `Bearer ${token}` },
+        };
+  
+        const { data } = await axios.get(
+          `${BASE_URL}/routes/get-followers/${route.params.paramKey}`,
+          config
+        );
+        setFollowers(data)
+        console.log('followers', followers)
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
     useEffect(() => {
       console.log('paramKey', route.params.paramKey)
       getFollowerCount()
-    }, [])
+      getFollowers()
+    }, [count])
 
   return (
     <View>
