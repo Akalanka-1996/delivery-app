@@ -3,6 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import axios from 'axios'
 import { BASE_URL } from '../config'
 import React, {createContext, useState, useEffect} from 'react'
+import { registerIndieID } from 'native-notify';
 
 export const AuthContext = createContext()
 
@@ -79,6 +80,18 @@ export const AuthProvider = ({children}) => {
              AsyncStorage.setItem('userInfo', JSON.stringify(userInfo))
              setIsLoading(false)
              console.log(userInfo)
+
+            // Native Notify Indie Push Registration Code
+            registerIndieID(`${userInfo._id}`, 4597, 'pvq8whlzHqDGFuqGdELoWs');
+            // End of Native Notify Code
+
+            axios.post(`https://app.nativenotify.com/api/indie/notification`, {
+            subID: `${userInfo._id}`,
+            appId: 4597,
+            appToken: 'pvq8whlzHqDGFuqGdELoWs',
+            title: 'Door To Delivery',
+            message: 'Successfully Logged In!'
+ });
         })
         .catch(e => {
             console.log(`register error ${e}`)
