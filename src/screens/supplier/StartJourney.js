@@ -5,6 +5,8 @@ import Header from "../../components/Header";
 import { AuthContext } from "../../context/AuthContext";
 import { BASE_URL } from "../../config";
 import { Button, Input } from "react-native-elements";
+import { useIsFocused } from "@react-navigation/native"; 
+import ReloadIcon from "../../components/ReloadIcon";
 
 
 const StartJourney = ({route}) => {
@@ -14,6 +16,8 @@ const StartJourney = ({route}) => {
     const [vehicleNumber, setVehicleNumber] = useState('')
     const [count, setCount] = useState()
     const [followers, setFollowers] = useState([])
+
+    const isFocused = useIsFocused();
 
     const token = userInfo.token;
 
@@ -31,7 +35,7 @@ const StartJourney = ({route}) => {
             console.log("data", data);
             alert("Journey Started")
             axios.post(`https://app.nativenotify.com/api/indie/group/notification`, {
-            subIDs: ['635e988e1fb66483a2808722', '635f550034cd7e3748cf78d1'],
+            subIDs: followers,
             appId: 4597,
             appToken: 'pvq8whlzHqDGFuqGdELoWs',
             title: 'Door To Delivery',
@@ -85,6 +89,7 @@ const StartJourney = ({route}) => {
   return (
     <View>
       <Header text="Start Journey" />
+      <ReloadIcon  getFollowers={getFollowers} />
       <Text>Followers Count: {count}</Text>
       {/* <Text>{route.params.paramKey}</Text> */}
       <Input
