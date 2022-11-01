@@ -26,6 +26,8 @@ import { Input, Button } from "react-native-elements";
   import Header from '../../components/Header'
   import { BASE_URL } from '../../config';
   import moment from 'moment';
+import { registerIndieID } from 'native-notify';
+
 
 const FollowRoute = ({route}) => {
     const { userInfo, isLoading, logout } = useContext(AuthContext);
@@ -92,6 +94,34 @@ const FollowRoute = ({route}) => {
           }
       }
 
+      const sendFiveMinNotification = () => {
+       try {
+        console.log('custom hour', customRoute.hour)
+        console.log('custom route', typeof(customRoute.min))
+        console.log('current hour', typeof(currentHour))
+
+        if (currentHour === customRoute.hour) {
+          let diff = 0;
+          diff = customRoute.min - currentDate
+          console.log('diff', diff)
+
+          if (diff < 5) {
+            axios.post(`https://app.nativenotify.com/api/indie/notification`, {
+              subID: `${userInfo._id}`,
+              appId: 4597,
+              appToken: 'pvq8whlzHqDGFuqGdELoWs',
+              title: 'Door To Delivery',
+              message: 'Delivery Will Arrive in 5 mins'
+   });
+          }
+        }
+
+       } catch (error) {
+        console.log(error)
+       }
+        
+      }
+
       useEffect(() => {
         getRouteById()
         getCustomerLane()
@@ -106,6 +136,10 @@ const FollowRoute = ({route}) => {
         var hour = moment().utcOffset('+05:30').hour();
         setCurrentHour(hour);
       }, []);
+
+      useEffect(() => {
+        sendFiveMinNotification()
+      }, [])
   return (
     <View>
       <Header text="Follow Route" />
