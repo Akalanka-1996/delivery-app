@@ -6,14 +6,14 @@ function ReloadIcon({reloadFunction}) {
     const reloadIconName = Platform.OS === 'ios' ? 'ios-refresh' : 'md-refresh'
     return (
         <View style={styles.reloadIcon}>
-            <Ionicons onPress={reloadFunction} name={reloadIconName} color='#ff304f' size={24}/>
+            <Ionicons onPress={reloadFunction} name={reloadIconName} color='#000000' size={30}/>
         </View>
     );
 }
 
 const styles = StyleSheet.create({
     reloadIcon:{
-        top:40,
+        top:80,
         right:28,
         position:'absolute'
     }

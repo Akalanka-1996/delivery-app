@@ -1,5 +1,13 @@
 import React, { useState, useLayoutEffect, useContext, useEffect } from "react";
-import { StyleSheet, Text, View, Alert, Modal, TouchableHighlight, TextInput } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Alert,
+  Modal,
+  TouchableHighlight,
+  TextInput,
+} from "react-native";
 import axios from "axios";
 import Header from "../../components/Header";
 import { AuthContext } from "../../context/AuthContext";
@@ -15,8 +23,7 @@ const StartJourney = ({ route }) => {
   const [count, setCount] = useState();
   const [followers, setFollowers] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
-  const [delay, setDelay] = useState('')
-
+  const [delay, setDelay] = useState("");
 
   const isFocused = useIsFocused();
 
@@ -108,17 +115,20 @@ const StartJourney = ({ route }) => {
 
   const addDelay = async () => {
     try {
-      await axios.post(`https://app.nativenotify.com/api/indie/group/notification`, {
-        subIDs: followers,
-        appId: 4597,
-        appToken: "pvq8whlzHqDGFuqGdELoWs",
-        title: "Door To Delivery",
-        message: `Delay in ${delay}`,
-      });
+      await axios.post(
+        `https://app.nativenotify.com/api/indie/group/notification`,
+        {
+          subIDs: followers,
+          appId: 4597,
+          appToken: "pvq8whlzHqDGFuqGdELoWs",
+          title: "Door To Delivery",
+          message: `Delay in ${delay}`,
+        }
+      );
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   useEffect(() => {
     console.log("paramKey", route.params.paramKey);
@@ -128,93 +138,94 @@ const StartJourney = ({ route }) => {
 
   return (
     <>
-    <View>
-      <Header text="Start Journey" />
-      <ReloadIcon reloadFunction={getFollowers} />
-      <Text>Followers Count: {count}</Text>
-      {/* <Text>{route.params.paramKey}</Text> */}
-      <Input
-        type="text"
-        placeholder="Vehicle Type"
-        value={vehilceType}
-        onChangeText={(text) => setVehilceType(text)}
-      />
-      <Input
-        type="text"
-        placeholder="Vehicle Number"
-        value={vehicleNumber}
-        onChangeText={(text) => setVehicleNumber(text)}
-      />
-      <Button
-        containerStyle={styles.button}
-        raised
-        title="Start Journey"
-        onPress={startJourney}
-      />
-
-      <Button
-        containerStyle={styles.button}
-        raised
-        type="outline"
-        title="End Journey"
-        onPress={endJourney}
-      />
-       <Button
-        containerStyle={styles.button}
-        raised
-        title="Add Delay"
-        onPress={() => {
-          setModalVisible(true);
-        }}
-        // onPress={startJourney}
-      />
-    </View>
-    <View style={styles.centeredView}>
-      <Modal
-        animationType="slide"
-        //animationInTiming = {13900}
-       // transparent={true}
-        visible={modalVisible}
-       // animationOut = "slide"
-        swipeDirection = "down"
-        onRequestClose={() => {
-          Alert.alert("Modal has been closed.");
-        }}
-      >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-          <TextInput
-        type="text"
-        placeholder="Delay Time"
-        value={delay}
-        onChangeText={(text) => setDelay(text)}
+      <View>
+        <Header text="Start Journey" />
         
-      />
+        <ReloadIcon reloadFunction={getFollowers} />
 
-<Button
-        containerStyle={styles.button}
-        raised
-        type="outline"
-        title="Add Delay"
-        onPress={addDelay}
-      />
-
-            <TouchableHighlight
-              style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
-              onPress={() => {
-                setModalVisible(!modalVisible);
-              }}
-            >
-              
-              <Text style={styles.textStyle}>Close</Text>
-            </TouchableHighlight>
-          </View>
+       
+        <View style={styles.conutContainer}>
+        <Text style={styles.countText}>Followers Count: {count}</Text>
         </View>
-      </Modal>
 
-    </View>
+        <Input
+          type="text"
+          placeholder="Vehicle Type"
+          value={vehilceType}
+          onChangeText={(text) => setVehilceType(text)}
+        />
+        <Input
+          type="text"
+          placeholder="Vehicle Number"
+          value={vehicleNumber}
+          onChangeText={(text) => setVehicleNumber(text)}
+        />
+        <Button
+          containerStyle={styles.button}
+          raised
+          title="Start Journey"
+          onPress={startJourney}
+        />
+
+        <Button
+          containerStyle={styles.button}
+          raised
+          type="outline"
+          title="End Journey"
+          onPress={endJourney}
+        />
+        <Button
+          containerStyle={styles.button}
+          raised
+          title="Add Delay"
+          onPress={() => {
+            setModalVisible(true);
+          }}
+          // onPress={startJourney}
+        />
+      </View>
+      <View style={styles.centeredView}>
+        <Modal
+          animationType="slide"
+          //animationInTiming = {13900}
+          // transparent={true}
+          visible={modalVisible}
+          // animationOut = "slide"
+          swipeDirection="down"
+          onRequestClose={() => {
+            Alert.alert("Modal has been closed.");
+          }}
+        >
+          <View style={styles.centeredView}>
+            <View style={styles.modalView}>
+              <TextInput
+                type="text"
+                placeholder="Delay Time"
+                value={delay}
+                onChangeText={(text) => setDelay(text)}
+              />
+
+              <Button
+                containerStyle={styles.button}
+                raised
+                type="outline"
+                title="Add Delay"
+                onPress={addDelay}
+              />
+
+              <TouchableHighlight
+                style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
+                onPress={() => {
+                  setModalVisible(!modalVisible);
+                }}
+              >
+                <Text style={styles.textStyle}>Close</Text>
+              </TouchableHighlight>
+            </View>
+          </View>
+        </Modal>
+      </View>
     </>
-    
   );
 };
 
@@ -225,7 +236,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 22
+    marginTop: 22,
   },
   modalView: {
     margin: 20,
@@ -236,25 +247,43 @@ const styles = StyleSheet.create({
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
-      height: 2
+      height: 2,
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
-    elevation: 5
+    elevation: 5,
   },
   openButton: {
     backgroundColor: "#F194FF",
     borderRadius: 20,
     padding: 10,
-    elevation: 2
+    elevation: 2,
   },
   textStyle: {
     color: "white",
     fontWeight: "bold",
-    textAlign: "center"
+    textAlign: "center",
+    width: 100
   },
   modalText: {
     marginBottom: 15,
-    textAlign: "center"
+    textAlign: "center",
+  },
+  button: {
+    width: 200,
+    marginBottom: 10,
+    alignSelf: "center",
+
+  },
+  countText: {
+    fontSize: 16,
+    fontWeight: '500'
+  },
+  conutContainer: {
+    marginLeft: 10,
+    marginBottom: 15
+  },
+  reloadContainer: {
+    marginTop: 10
   }
 });
