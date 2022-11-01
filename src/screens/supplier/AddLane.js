@@ -78,6 +78,7 @@ const AddLane = ({route, navigation}) => {
       <Button
         containerStyle={styles.button}
         raised
+        type="outline"
         title="Start Journey"
         onPress={startJourney}
       />
@@ -88,4 +89,11 @@ const AddLane = ({route, navigation}) => {
 
 export default AddLane
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  button: {
+    width: 200,
+    marginBottom: 10,
+    alignSelf: "center",
+
+  },
+})
