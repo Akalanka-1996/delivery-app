@@ -109,12 +109,13 @@ function HomeScreen({ navigation }) {
   return (
     <View>
       <Header text="Home Screen" />
-      <View style={styles.name}>
-        <Text style={styles.nameText}>Hi {userInfo.name}</Text>
-      </View>
+
       <View>
         {category === "" ? (
           <>
+            <View style={styles.name}>
+              <Text style={styles.nameText}>Hi {userInfo.name}</Text>
+            </View>
             <View style={styles.info}>
               <Text style={styles.infoText}>What are you looking for?</Text>
             </View>
@@ -141,7 +142,7 @@ function HomeScreen({ navigation }) {
           </>
         ) : (
           <View style={styles.container}>
-            <Text>Available companies in your area</Text>
+            <Text style={styles.companyText}>Available companies in your area</Text>
             <FlatList
               data={company}
               //data defined in constructor
@@ -197,6 +198,11 @@ const styles = StyleSheet.create({
     marginLeft: 15,
     marginTop: 5,
   },
+  companyText: {
+    fontSize: 16,
+    fontWeight: "500",
+    marginLeft: 10
+  }
 });
 
 export default HomeScreen;

@@ -145,10 +145,11 @@ const FollowRoute = ({route}) => {
     <View>
       <Header text="Follow Route" />
       <ReloadIcon reloadFunction={sendFiveMinNotification} />
-      <Text>Start Point: {selectedRoute.startPoint}</Text>
-      <Text>{userInfo.lane}</Text>
+      <Text style={styles.pointText}>Start Point: {selectedRoute.startPoint}</Text>
+      <Text  style={styles.pointText}>Estimated Time {customRoute.hour} : {customRoute.min}</Text>
+      {/* <Text>{userInfo.lane}</Text>
       <Text>{currentHour}</Text>
-      <Text>{currentDate}</Text>
+      <Text>{currentDate}</Text> */}
       <Button title="Follow this Route" 
             containerStyle={styles.button} 
             onPress={followSelectedRoute} 
@@ -161,7 +162,14 @@ export default FollowRoute
 
 const styles = StyleSheet.create({
     button: {
-        width: 200,
-        marginBottom: 10,
+      width: 200,
+      marginBottom: 10,
+      alignSelf: "center",
+      marginTop: 10
       },
+      pointText: {
+        fontSize: 16,
+        fontWeight: "500",
+        marginLeft: 10
+      }
 })
