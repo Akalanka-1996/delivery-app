@@ -27,6 +27,7 @@ import { Input, Button } from "react-native-elements";
   import { BASE_URL } from '../../config';
   import moment from 'moment';
 import { registerIndieID } from 'native-notify';
+import ReloadIcon from "../../components/ReloadIcon";
 
 
 const FollowRoute = ({route}) => {
@@ -105,7 +106,7 @@ const FollowRoute = ({route}) => {
           diff = customRoute.min - currentDate
           console.log('diff', diff)
 
-          if (diff < 5) {
+          if (diff && diff < 5 && diff > 0) {
             axios.post(`https://app.nativenotify.com/api/indie/notification`, {
               subID: `${userInfo._id}`,
               appId: 4597,
@@ -143,6 +144,7 @@ const FollowRoute = ({route}) => {
   return (
     <View>
       <Header text="Follow Route" />
+      <ReloadIcon reloadFunction={sendFiveMinNotification} />
       <Text>Start Point: {selectedRoute.startPoint}</Text>
       <Text>{userInfo.lane}</Text>
       <Text>{currentHour}</Text>
