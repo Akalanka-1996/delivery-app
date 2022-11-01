@@ -130,7 +130,7 @@ const StartJourney = ({ route }) => {
     <>
     <View>
       <Header text="Start Journey" />
-      <ReloadIcon getFollowers={getFollowers} />
+      <ReloadIcon reloadFunction={getFollowers} />
       <Text>Followers Count: {count}</Text>
       {/* <Text>{route.params.paramKey}</Text> */}
       <Input

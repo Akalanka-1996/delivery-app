@@ -2,11 +2,11 @@ import React from 'react';
 import { View, StyleSheet, Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons'
 
-function ReloadIcon({getFollowers}) {
+function ReloadIcon({reloadFunction}) {
     const reloadIconName = Platform.OS === 'ios' ? 'ios-refresh' : 'md-refresh'
     return (
         <View style={styles.reloadIcon}>
-            <Ionicons onPress={getFollowers} name={reloadIconName} color='#ff304f' size={24}/>
+            <Ionicons onPress={reloadFunction} name={reloadIconName} color='#ff304f' size={24}/>
         </View>
     );
 }
