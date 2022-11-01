@@ -10,6 +10,8 @@ const AddLane = ({route, navigation}) => {
     const [lane, setLane] = useState('')
     const [estimatedTime, setEstimatedTime] = useState()
     const [id, setId] = useState('')
+    const [hour, setHour] = useState()
+    const [min, setMin] = useState()
 
     const {userInfo, isLoading, logout } = useContext(AuthContext)
 
@@ -24,7 +26,7 @@ const AddLane = ({route, navigation}) => {
       
             const { data } = await axios.post(
               `${BASE_URL}/lanes/create`,
-              { lane, estimatedTime, routeId: id },
+              { lane, estimatedTime, hour, min, routeId: id },
               config
             );
             console.log("data", data);
@@ -55,9 +57,15 @@ const AddLane = ({route, navigation}) => {
       />
       <Input
         type="number"
-        placeholder="Estimated Arrival Time"
-        value={estimatedTime}
-        onChangeText={(text) => setEstimatedTime(text)}
+        placeholder="Estimated Arrival Time: HR"
+        value={hour}
+        onChangeText={(text) => setHour(text)}
+      />
+       <Input
+        type="number"
+        placeholder="Estimated Arrival Time: MIN"
+        value={min}
+        onChangeText={(text) => setMin(text)}
       />
       <View style={styles.btnContainer}>
       <Button

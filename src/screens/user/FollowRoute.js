@@ -25,10 +25,14 @@ import { Input, Button } from "react-native-elements";
   import { AuthContext } from "../../context/AuthContext";
   import Header from '../../components/Header'
   import { BASE_URL } from '../../config';
+  import moment from 'moment';
 
 const FollowRoute = ({route}) => {
     const { userInfo, isLoading, logout } = useContext(AuthContext);
     const [selectedRoute, setSelectedRoute] = useState({})
+    const [currentDate, setCurrentDate] = useState('');
+    const [currentHour, setCurrentHour] = useState()
+    const [customRoute, setCustomRoute] = useState({})
   
     const token = userInfo.token;
 
@@ -42,7 +46,7 @@ const FollowRoute = ({route}) => {
             `${BASE_URL}/routes/get-route-by-id/${route.params.paramKey}`,
             config
           );
-          console.log("single route", data);
+          console.log("single route", data.lanes[0]);
           setSelectedRoute(data)
         //   setRoutes(data)
           // setCompany(data);
@@ -51,6 +55,24 @@ const FollowRoute = ({route}) => {
           console.log(error);
         }
       };
+
+      const getCustomerLane = async () => {
+        try {
+          const config = {
+            headers: { Authorization: `Bearer ${token}` },
+          };
+    
+          const { data } = await axios.get(
+            `${BASE_URL}/lanes/get-customer-lane/${route.params.paramKey}/${userInfo.lane}`,
+            config
+          );
+          console.log("custom route", data);
+          setCustomRoute(data)
+          console.log("akalanka", customRoute)
+        } catch (error) {
+          console.log(error);
+        }
+      }
 
       const followSelectedRoute = async () => {
         try {
@@ -72,11 +94,25 @@ const FollowRoute = ({route}) => {
 
       useEffect(() => {
         getRouteById()
+        getCustomerLane()
       }, [])
+
+      useEffect(() => {
+        var date = moment().utcOffset('+05:30').minute();
+        setCurrentDate(date);
+      }, []);
+
+      useEffect(() => {
+        var hour = moment().utcOffset('+05:30').hour();
+        setCurrentHour(hour);
+      }, []);
   return (
     <View>
       <Header text="Follow Route" />
       <Text>Start Point: {selectedRoute.startPoint}</Text>
+      <Text>{userInfo.lane}</Text>
+      <Text>{currentHour}</Text>
+      <Text>{currentDate}</Text>
       <Button title="Follow this Route" 
             containerStyle={styles.button} 
             onPress={followSelectedRoute} 

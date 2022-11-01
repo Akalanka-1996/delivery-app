@@ -70,7 +70,13 @@ const ViewCompany = ({route, navigation}) => {
     let items = [];
     if( item.lanes) {
       items = item.lanes.map(row => {
-        return <Text onPress={() => getItem(item)}>{row.lane}</Text>
+        return (<>
+        <Text onPress={() => getItem(item)}>{row.lane}</Text>
+        <Text onPress={() => getItem(item)}>{row.hour}</Text>
+        <Text onPress={() => getItem(item)}>{row.min}</Text>
+        
+
+        </>)
       })
     } 
 
