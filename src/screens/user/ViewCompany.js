@@ -71,9 +71,15 @@ const ViewCompany = ({route, navigation}) => {
     if( item.lanes) {
       items = item.lanes.map(row => {
         return (<>
-        <Text onPress={() => getItem(item)}>{row.lane}</Text>
+       <View  style={{flexDirection: 'row', }}>
+       <View>
+       <Text style={styles.laneText} onPress={() => getItem(item)}>{row.lane}</Text>
+       </View>
+        <View style={{flexDirection: 'row', marginLeft: 20, marginTop: 5 }}>
         <Text onPress={() => getItem(item)}>{row.hour}</Text>
-        <Text onPress={() => getItem(item)}>{row.min}</Text>
+        <Text style={{marginLeft: 5}} onPress={() => getItem(item)}>{row.min}</Text>
+        </View>
+       </View>
         
 
         </>)
@@ -120,6 +126,13 @@ const styles = StyleSheet.create({
     padding: 15,
     marginBottom: 5,
     backgroundColor: 'skyblue',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    fontWeight: '400'
   },
+  laneText: {
+    fontWeight: '600',
+    marginLeft: 20,
+    marginTop: 5
+    
+  }
 })
