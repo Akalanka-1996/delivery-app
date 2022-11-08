@@ -23,6 +23,10 @@ const AddRoute = ({route, navigation}) => {
             const config = {
               headers: { Authorization: `Bearer ${token}` },
             };
+
+            if (title === '' || startPoint === '' || startTime==='') {
+              alert('Please fill all the fields!')
+          }
       
             const { data } = await axios.post(
               `${BASE_URL}/routes/create`,

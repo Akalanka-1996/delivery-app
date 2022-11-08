@@ -30,6 +30,10 @@ const CreateCompany = ({ navigation }) => {
         headers: { Authorization: `Bearer ${token}` },
       };
 
+      if (title === '' || description === '' || area==='') {
+        alert('Please fill all the fields!')
+    }
+
       const { data } = await axios.post(
         `${BASE_URL}/company/create`,
         { title, description, area, category: value },

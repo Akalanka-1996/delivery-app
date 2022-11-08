@@ -23,6 +23,10 @@ const AddLane = ({route, navigation}) => {
             const config = {
               headers: { Authorization: `Bearer ${token}` },
             };
+
+            if (lane === '' || estimatedTime === '' || hour==='' || min=== '') {
+              alert('Please fill all the fields!')
+          }
       
             const { data } = await axios.post(
               `${BASE_URL}/lanes/create`,

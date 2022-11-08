@@ -13,6 +13,9 @@ export const AuthProvider = ({children}) => {
     const [splashLoading, setSplashLoading] = useState(false)
 
     const register = (name, email, password, phone, area, lane, isSupplier) => {
+        if (name === '' || email === '' || phone === '' || area === '' || lane === '') {
+            alert('Please fill all the fields')
+        }
        setIsLoading(true)
        console.log('name', name)
        console.log('isSupplier', isSupplier)
@@ -42,6 +45,9 @@ export const AuthProvider = ({children}) => {
     }
 
     const registerSupplier = (name, email, password, phone) => {
+        if (name === '' || email === '' || phone === '') {
+            alert('Please fill all the fields')
+        }
         setIsLoading(true)
  
         axios.post(`${BASE_URL}/users/`, {
@@ -65,6 +71,7 @@ export const AuthProvider = ({children}) => {
      }
 
     const login = ( email, password) => {
+        setIsLoading(true)
         setIsLoading(true)
  
         axios.post(`${BASE_URL}/users/login`, {
@@ -95,6 +102,9 @@ export const AuthProvider = ({children}) => {
         })
         .catch(e => {
             console.log(`register error ${e}`)
+            if (email === '' || password === '') {
+                alert('Incorrect Credentials!')
+            }
             setIsLoading(false)
         })
      }
