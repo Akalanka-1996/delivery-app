@@ -44,8 +44,8 @@ const StartJourney = ({ route }) => {
       alert("Journey Started");
       axios.post(`https://app.nativenotify.com/api/indie/group/notification`, {
         subIDs: followers,
-        appId: 4597,
-        appToken: "pvq8whlzHqDGFuqGdELoWs",
+        appId: 4837,
+        appToken: 'iWKmkqlwMEPOULXMm88bsG',
         title: "Door To Delivery",
         message: "Journey Started",
       });
@@ -69,8 +69,8 @@ const StartJourney = ({ route }) => {
       alert("Journey Finished");
       axios.post(`https://app.nativenotify.com/api/indie/group/notification`, {
         subIDs: followers,
-        appId: 4597,
-        appToken: "pvq8whlzHqDGFuqGdELoWs",
+        appId: 4837,
+        appToken: 'iWKmkqlwMEPOULXMm88bsG',
         title: "Door To Delivery",
         message: "Journey Finished",
       });
@@ -119,8 +119,8 @@ const StartJourney = ({ route }) => {
         `https://app.nativenotify.com/api/indie/group/notification`,
         {
           subIDs: followers,
-          appId: 4597,
-          appToken: "pvq8whlzHqDGFuqGdELoWs",
+          appId: 4837,
+          appToken:  'iWKmkqlwMEPOULXMm88bsG',
           title: "Door To Delivery",
           message: `Delay in ${delay}`,
         }

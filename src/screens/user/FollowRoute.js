@@ -110,8 +110,8 @@ const FollowRoute = ({ route }) => {
         if (diff && diff < 5 && diff > 0) {
           axios.post(`https://app.nativenotify.com/api/indie/notification`, {
             subID: `${userInfo._id}`,
-            appId: 4597,
-            appToken: "pvq8whlzHqDGFuqGdELoWs",
+            appId: 4837,
+            appToken: 'iWKmkqlwMEPOULXMm88bsG',
             title: "Door To Delivery",
             message: `Delivery Will Arrive in ${diff} mins`,
           });
@@ -120,8 +120,8 @@ const FollowRoute = ({ route }) => {
         if (diff && diff === 0) {
           axios.post(`https://app.nativenotify.com/api/indie/notification`, {
             subID: `${userInfo._id}`,
-            appId: 4597,
-            appToken: "pvq8whlzHqDGFuqGdELoWs",
+            appId: 4837,
+            appToken: 'iWKmkqlwMEPOULXMm88bsG',
             title: "Door To Delivery",
             message: `Delivery is Arrived!`,
           });

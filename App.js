@@ -6,7 +6,7 @@ import registerNNPushToken from 'native-notify';
 
 
 export default function App() {
-  registerNNPushToken(4597, 'pvq8whlzHqDGFuqGdELoWs');
+  registerNNPushToken(4837, 'iWKmkqlwMEPOULXMm88bsG');
   return (
     <AuthProvider>
       <Navigation />

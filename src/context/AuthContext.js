@@ -13,9 +13,15 @@ export const AuthProvider = ({children}) => {
     const [splashLoading, setSplashLoading] = useState(false)
 
     const register = (name, email, password, phone, area, lane, isSupplier) => {
-        if (name === '' || email === '' || phone === '' || area === '' || lane === '') {
+        if (name === '' || email === '' || phone === '' || area === '' || lane === '' || password === '') {
             alert('Please fill all the fields')
         }
+
+        let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
+
+        if (reg.test(email) === false) {
+            alert("Email is Not Correct");
+          }
        setIsLoading(true)
        console.log('name', name)
        console.log('isSupplier', isSupplier)
@@ -45,9 +51,15 @@ export const AuthProvider = ({children}) => {
     }
 
     const registerSupplier = (name, email, password, phone) => {
-        if (name === '' || email === '' || phone === '') {
+        if (name === '' || email === '' || phone === '' || password === '') {
             alert('Please fill all the fields')
         }
+
+        let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
+
+        if (reg.test(email) === false) {
+            alert("Email is Not Correct");
+          }
         setIsLoading(true)
  
         axios.post(`${BASE_URL}/users/`, {
@@ -63,7 +75,21 @@ export const AuthProvider = ({children}) => {
              AsyncStorage.setItem('userInfo', JSON.stringify(userInfo))
              setIsLoading(false)
              console.log(userInfo)
+
+              // Native Notify Indie Push Registration Code
+            registerIndieID(`${userInfo._id}`, 4837, 'iWKmkqlwMEPOULXMm88bsG');
+            // End of Native Notify Code
+
+            axios.post(`https://app.nativenotify.com/api/indie/notification`, {
+            subID: `${userInfo._id}`,
+            appId: 4837,
+            appToken: 'iWKmkqlwMEPOULXMm88bsG',
+            title: 'Door To Delivery',
+            message: 'Successfully Registered!'
+ });
         })
+
+        
         .catch(e => {
             console.log(`register error ${e}`)
             setIsLoading(false)
@@ -89,13 +115,13 @@ export const AuthProvider = ({children}) => {
              console.log(userInfo)
 
             // Native Notify Indie Push Registration Code
-            registerIndieID(`${userInfo._id}`, 4597, 'pvq8whlzHqDGFuqGdELoWs');
+            registerIndieID(`${userInfo._id}`, 4837, 'iWKmkqlwMEPOULXMm88bsG');
             // End of Native Notify Code
 
             axios.post(`https://app.nativenotify.com/api/indie/notification`, {
             subID: `${userInfo._id}`,
-            appId: 4597,
-            appToken: 'pvq8whlzHqDGFuqGdELoWs',
+            appId: 4837,
+            appToken: 'iWKmkqlwMEPOULXMm88bsG',
             title: 'Door To Delivery',
             message: 'Successfully Logged In!'
  });
