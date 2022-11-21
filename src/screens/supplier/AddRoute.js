@@ -27,7 +27,14 @@ const AddRoute = ({route, navigation}) => {
             if (title === '' || startPoint === '' || startTime==='') {
               alert('Please fill all the fields!')
           }
-      
+
+          let startNumber = Number(startTime)
+
+          console.log(typeof(startNumber))
+
+          if (startNumber > 24) {
+            alert("Invalid start time!")
+          } else {
             const { data } = await axios.post(
               `${BASE_URL}/routes/create`,
               { title, startPoint, startTime, company: id },
@@ -35,6 +42,10 @@ const AddRoute = ({route, navigation}) => {
             );
             console.log("data", data);
             alert("Route created")
+          }
+
+      
+          
           } catch (error) {
             console.log(error);
           }
@@ -70,7 +81,7 @@ const AddRoute = ({route, navigation}) => {
         />
         <Input
           type="number"
-          placeholder="Start Time"
+          placeholder="Start Time (1-24 HR)"
           value={startTime}
           onChangeText={(text) => setStartTime(text)}
         />

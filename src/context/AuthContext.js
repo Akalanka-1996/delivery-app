@@ -22,6 +22,10 @@ export const AuthProvider = ({children}) => {
         if (reg.test(email) === false) {
             alert("Email is Not Correct");
           }
+        
+        if (password.trim().length < 6) {
+            alert("Password length should be greater than 6")
+        }
        setIsLoading(true)
        console.log('name', name)
        console.log('isSupplier', isSupplier)
@@ -60,6 +64,10 @@ export const AuthProvider = ({children}) => {
         if (reg.test(email) === false) {
             alert("Email is Not Correct");
           }
+
+          if (password.trim().length < 6) {
+            alert("Password length should be greater than 6")
+        }
         setIsLoading(true)
  
         axios.post(`${BASE_URL}/users/`, {
@@ -128,9 +136,9 @@ export const AuthProvider = ({children}) => {
         })
         .catch(e => {
             console.log(`register error ${e}`)
-            if (email === '' || password === '') {
+            // if (email === '' || password === '') {
                 alert('Incorrect Credentials!')
-            }
+            // }
             setIsLoading(false)
         })
      }
